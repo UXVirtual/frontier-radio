@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
-echo "Installing ffmpeg from source..."
+echo "Installing ffmpeg from source. This may take several hours..."
 echo
 sudo apt-get install cmake cmake-curses-gui build-essential yasm
 git clone git://source.ffmpeg.org/ffmpeg.git
 cd ffmpeg
-sudo ./configure --arch=armel --target-os=linux --enable-gpl --enable-nonfree
+sudo ./configure --arch=armel --target-os=linux --enable-gpl --enable-nonfree --enable-ffplay
 make -j4
 sudo make install
 rm ffmpeg
