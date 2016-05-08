@@ -44,10 +44,10 @@ getNext(){
 
             #[[ -n $1 ]] && [[ -r $1 ]]
 
-            if [ "$rnd" -gt 0 ] && [ "$rnd" -lt 40 ] ;
+            if [ "$rnd" -gt 0 ] && [ "$rnd" -lt 60 ] ;
                 then
                     nextType="track"
-            elif [ "$rnd" -gt 39 ] && [ "$rnd" -lt 70 ] ;
+            elif [ "$rnd" -gt 59 ] && [ "$rnd" -lt 70 ] ;
                 then
                     nextType="radioplay"
             elif [ "$rnd" -gt 69 ] && [ "$rnd" -lt 80 ] ;
