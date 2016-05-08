@@ -19,7 +19,7 @@ playRandomFile(){
 
     if [ "$mode" == "pifm" ] ;
         then
-            ffmpeg -i $(file) -f s16le -ar $(bitrate) -ac 2 - | sudo ./pifm - $(channel) $(bitrate) stereo
+            ffmpeg -i "$file" -f s16le -ar "$bitrate" -ac 2 - | sudo ./pifm - "$channel" "$bitrate" stereo
     fi
 
     ffplay -autoexit -i "$file"
