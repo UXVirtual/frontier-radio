@@ -12,21 +12,21 @@ currentType=""
 playRandomFile(){
     dir=$1
 
-    ls -I '.*' -rt "$dir" |sort -R |tail -1 |while read file; do
-        echo "Playing $file"
+    file=$(ls -1 "$dir" | python -c "import sys; import random; print(random.choice(sys.stdin.readlines()).rstrip())")
 
-        if [ "$mode" == "pifm" ] ;
-            then
-                ffmpeg -i "$file" -f s16le -ar "$bitrate" -ac 2 - | sudo ./pifm - "$channel" "$bitrate" stereo
-        fi
+    echo "Playing $file"
 
-        if [ -f /Applications/VLC.app/Contents/MacOS/VLC ] ;
-            then
-                /Applications/VLC.app/Contents/MacOS/VLC --no-repeat --no-loop --play-and-exit -I rc "$file"
-            else
-                cvlc -A alsa,none --no-repeat --no-loop --play-and-exit --no-disable-screensaver --alsa-audio-device default "$file"
-        fi
-    done
+    if [ "$mode" == "pifm" ] ;
+        then
+            ffmpeg -i "$file" -f s16le -ar "$bitrate" -ac 2 - | sudo ./pifm - "$channel" "$bitrate" stereo
+    fi
+
+    if [ -f /Applications/VLC.app/Contents/MacOS/VLC ] ;
+        then
+            /Applications/VLC.app/Contents/MacOS/VLC --no-repeat --no-loop --play-and-exit -I rc "$dir/$file"
+        else
+            cvlc -A alsa,none --no-repeat --no-loop --play-and-exit --no-disable-screensaver --alsa-audio-device default "$dir/$file"
+    fi
 
 }
 
@@ -72,24 +72,24 @@ getNext(){
     case "$nextType" in
         psa)
             currentType="psa"
-            playRandomFile "~/frontier-radio/music/transition-psa/*.mp3" && playRandomFile "~/frontier-radio/music/psa/*.mp3" && getNext
+            playRandomFile "./music/transition-psa" && playRandomFile "./music/psa" && getNext
             ;;
         radioplay)
             currentType="radioplay"
-            playRandomFile "~/frontier-radio/music/goodbye/*.mp3" && playRandomFile "~/frontier-radio/music/radioplays/*.mp3" && getNext
+            playRandomFile "./music/goodbye" && playRandomFile "./music/radioplays" && getNext
             ;;
         advert)
             currentType="advert"
-            playRandomFile "~/frontier-radio/music/transition-commercial/*.mp3" && playRandomFile "~/frontier-radio/music/adverts/*.mp3" && playRandomFile "~/frontier-radio/music/adverts/*.mp3" && getNext
+            playRandomFile "./music/transition-commercial" && playRandomFile "./music/adverts" && playRandomFile "./music/adverts" && getNext
             ;;
         track)
             currentType="track"
-            playRandomFile "~/frontier-radio/music/transition-music/*.mp3" && playRandomFile "~/frontier-radio/music/tracks/*.mp3" && playRandomFile "~/frontier-radio/music/tracks/*.mp3" && playRandomFile "~/frontier-radio/music/tracks/*.mp3" && playRandomFile "~/frontier-radio/music/goodbye/*.mp3" && getNext
+            playRandomFile "./music/transition-music" && playRandomFile "./music/tracks" && playRandomFile "./music/tracks" && playRandomFile "./music/tracks" && playRandomFile "./music/goodbye" && getNext
             ;;
 
         *)
             currentType="goodbye"
-            playRandomFile "~/frontier-radio/music/goodbye/*.mp3" && getNext "track"
+            playRandomFile "./music/goodbye" && getNext "track"
             ;;
     esac
 }
