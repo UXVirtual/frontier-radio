@@ -22,13 +22,29 @@ Pirate radio station powered by PiFM running on Raspberry Pi Zero.
     git clone https://github.com/HAZARDU5/frontier-radio.git
     ```
 
-6.  Run the install script `install-pi.sh`. Note that this may take several hours to complete. You will need an internet 
+6.  Run the install script `install-pi.sh`. Note that this may take several minutes to complete. You will need an internet 
     connection to run the installer:
 
     ```
     cd /home/pi/frontier-radio
     ./install-pi.sh
     ```
+
+### Forcing Output to a USB Sound Card on Raspberry Pi
+
+If you're using Raspbian Jessie which is based on Debian 8 you can edit the `/usr/share/alsa/alsa.conf` file to set the 
+priority of the card entry to use card 1.
+
+```
+defaults.ctl.card 1
+defaults.pcm.card 1
+```
+
+Check the number of the card matches yours by inserting the USB sound card and running:
+
+```
+aplay -l
+```
 
 ## Installation on OSX
 
@@ -60,3 +76,4 @@ You can also add other mp3s to the following folders to change the advertising /
 *   `transition-commercial` - DJ announcements before an advert begins.
 *   `transition-music` - DJ announcements before a track begins.
 *   `transition-psa` - DJ announcements before a public service announcement begins.
+

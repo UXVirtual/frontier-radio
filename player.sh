@@ -28,7 +28,7 @@ playRandomFile(){
         then
             /Applications/VLC.app/Contents/MacOS/VLC --no-repeat --no-loop --play-and-exit -I rc "$file"
         else
-            cvlc --no-repeat --no-loop --play-and-exit "$file"
+            cvlc -A alsa,none --no-repeat --no-loop --play-and-exit --alsa-audio-device default "$file"
     fi
     #ffplay -autoexit -i "$file"
 }
