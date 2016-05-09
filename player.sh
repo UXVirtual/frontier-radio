@@ -16,7 +16,11 @@ playRandomFile(){
     # Seed random generator
     RANDOM=$$$(date +%s)
 
-    file=${files[RANDOM % ${#files[@]}]}
+    rnd=RANDOM
+
+    echo "Random int $rnd"
+
+    file=${files[rnd % ${#files[@]}]}
     echo "Playing $file"
 
     if [ "$mode" == "pifm" ] ;
