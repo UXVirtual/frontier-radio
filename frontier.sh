@@ -4,6 +4,8 @@
 # Provides:          frontier
 # Required-Start:    $remote_fs $syslog
 # Required-Stop:     $remote_fs $syslog
+# Should-Start:      alsa-utils
+# Should-Stop:       alsa-utils
 # Default-Start:     2 3 4 5
 # Default-Stop:      0 1 6
 # Short-Description: Controls Frontier Radio service
