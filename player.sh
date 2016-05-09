@@ -87,7 +87,7 @@ getNext(){
             ;;
         track)
             currentType="track"
-            playRandomFile "./music/transition-music/*.mp3" && playRandomFile "./music/tracks/*.mp3" && playRandomFile "./music/tracks/*.mp3" && getNext
+            playRandomFile "./music/transition-music/*.mp3" && playRandomFile "./music/tracks/*.mp3" && playRandomFile "./music/tracks/*.mp3" && playRandomFile "./music/tracks/*.mp3" && getNext
             ;;
 
         *)
