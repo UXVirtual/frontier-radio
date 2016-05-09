@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+
+
 #set the playback mode. Valid values are "output" for output via the 3.5mm jack or "pifm" for output on GPIO pin 4.
 mode="output"
 channel=107.0 #chanel for pifm output
@@ -22,7 +24,13 @@ playRandomFile(){
             ffmpeg -i "$file" -f s16le -ar "$bitrate" -ac 2 - | sudo ./pifm - "$channel" "$bitrate" stereo
     fi
 
-    ffplay -autoexit -i "$file"
+    if [ -f /Applications/VLC.app/Contents/MacOS/VLC ] ;
+        then
+            /Applications/VLC.app/Contents/MacOS/VLC --no-repeat --no-loop --play-and-exit -I rc "$file"
+        else
+            cvlc --no-repeat --no-loop --play-and-exit "$file"
+    fi
+    #ffplay -autoexit -i "$file"
 }
 
 getNext(){

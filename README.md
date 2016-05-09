@@ -3,7 +3,7 @@ Frontier Radio
 
 Pirate radio station powered by PiFM running on Raspberry Pi Zero.
 
-## Installation
+## Installation on Raspberry Pi Raspbian
 
 1.  [Download NOOBS](https://www.raspberrypi.org/downloads/noobs/) and install the latest version of Rapbian on your 
     Pi. Included in the download are installation instructions on how to format and copy the install files to your SD
@@ -22,13 +22,27 @@ Pirate radio station powered by PiFM running on Raspberry Pi Zero.
     git clone https://github.com/HAZARDU5/frontier-radio.git
     ```
 
-6.  Run the install script. Note that this may take several hours to complete. You will need an internet connection
-    to run the installer:
+6.  Run the install script `install-pi.sh`. Note that this may take several hours to complete. You will need an internet 
+    connection to run the installer:
 
     ```
     cd /home/pi/frontier-radio
-    ./install.sh
+    ./install-pi.sh
     ```
+
+## Installation on OSX
+
+1.  Download and install VLC into your `/Applications` folder.
+
+2.  Run the following commands:
+
+    ```
+    echo "alias cvlc='/Applications/VLC.app/Contents/MacOS/VLC -I rc'" >> ~/.bash_profile
+    echo "alias cvlc='/Applications/VLC.app/Contents/MacOS/VLC -I rc'" >> ~/.profile
+    echo "alias cvlc='/Applications/VLC.app/Contents/MacOS/VLC -I rc'" >> ~/.bashrc
+    ```
+
+3.  Run the install script `install-osx.sh`.
 
 ## Adding Music
 
