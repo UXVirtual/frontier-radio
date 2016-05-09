@@ -13,7 +13,7 @@ playRandomFile(){
         then
             /Applications/VLC.app/Contents/MacOS/VLC --no-repeat --no-loop --play-and-exit -I rc "$dir/$file"
         else
-            cvlc -A alsa,none --no-repeat --no-loop --play-and-exit --no-disable-screensaver --alsa-audio-device hw:CARD=U0x41e0x30d3,DEV=0 "$dir/$file"
+            cvlc -A alsa,none --no-repeat --no-loop --play-and-exit --no-disable-screensaver --alsa-audio-device plughw "$dir/$file"
     fi
 
 }
