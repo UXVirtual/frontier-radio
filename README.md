@@ -34,15 +34,7 @@ Pirate radio station powered by PiFM running on Raspberry Pi Zero.
 
 1.  Download and install VLC into your `/Applications` folder.
 
-2.  Run the following commands:
-
-    ```
-    echo "alias cvlc='/Applications/VLC.app/Contents/MacOS/VLC -I rc'" >> ~/.bash_profile
-    echo "alias cvlc='/Applications/VLC.app/Contents/MacOS/VLC -I rc'" >> ~/.profile
-    echo "alias cvlc='/Applications/VLC.app/Contents/MacOS/VLC -I rc'" >> ~/.bashrc
-    ```
-
-3.  Run the install script `install-osx.sh`.
+2.  Run the install script `install-osx.sh`.
 
 ## Adding Music
 
@@ -68,14 +60,3 @@ You can also add other mp3s to the following folders to change the advertising /
 *   `transition-commercial` - DJ announcements before an advert begins.
 *   `transition-music` - DJ announcements before a track begins.
 *   `transition-psa` - DJ announcements before a public service announcement begins.
-
-## MP3 Playback
-
-Run the following command to play back a track to test:
-
-```
-ffmpeg -i FILE.mp3 -f s16le -ar BITRATE -ac 2 - | sudo ./pifm - 107.0 BITRATE stereo
-```
-
-Where `BITRATE` is the bitrate of the mp3 track (typically this will be `44100`) and `FILE.mpe3` is the path to the file 
-you wish to playback.
