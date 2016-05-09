@@ -58,10 +58,10 @@ getNext(){
             elif [ "$rnd" -gt 59 ] && [ "$rnd" -lt 70 ] ;
                 then
                     nextType="radioplay"
-            elif [ "$rnd" -gt 69 ] && [ "$rnd" -lt 80 ] ;
+            elif [ "$rnd" -gt 69 ] && [ "$rnd" -lt 75 ] ;
                 then
                     nextType="psa"
-            elif [ "$rnd" -gt 79 ] && [ "$rnd" -lt 101 ] ;
+            elif [ "$rnd" -gt 74 ] && [ "$rnd" -lt 101 ] ;
                 then
                     nextType="advert"
             else
