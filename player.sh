@@ -6,7 +6,7 @@ if [ -f "/home/pi/frontier-radio" ] ;
     then
         rootFolder="/home/pi/frontier-radio"
     else
-        rootFolder="./"
+        rootFolder="."
 fi
 
 cd "$rootFolder"
