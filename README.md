@@ -32,7 +32,7 @@ Pirate radio station powered by PiFM running on Raspberry Pi Zero.
 
 ### Forcing Output to a USB Sound Card on Raspberry Pi
 
-If you're using Raspbian Jessie which is based on Debian 8 you can edit the `/usr/share/alsa/alsa.conf` file to set the 
+If you're using Raspbian Jessie which is based on Debian 8 you can edit the `/etc/asound.conf` file to set the 
 priority of the card entry to use card 1.
 
 ```
