@@ -2,6 +2,15 @@
 
 currentType=""
 
+if [ -f "/home/pi/frontier-radio" ] ;
+    then
+        rootFolder="/home/pi/frontier-radio"
+    else
+        rootFolder="./"
+fi
+
+cd "$rootFolder"
+
 playRandomFile(){
     dir=$1
 
@@ -51,24 +60,24 @@ getNext(){
     case "$nextType" in
         psa)
             currentType="psa"
-            playRandomFile "./music/transition-psa" && playRandomFile "./music/psa" && getNext
+            playRandomFile "$rootFolder/music/transition-psa" && playRandomFile "$rootFolder/music/psa" && getNext
             ;;
         radioplay)
             currentType="radioplay"
-            playRandomFile "./music/goodbye" && playRandomFile "./music/radioplays" && getNext
+            playRandomFile "$rootFolder/music/goodbye" && playRandomFile "$rootFolder/music/radioplays" && getNext
             ;;
         advert)
             currentType="advert"
-            playRandomFile "./music/transition-commercial" && playRandomFile "./music/adverts" && playRandomFile "./music/adverts" && getNext
+            playRandomFile "$rootFolder/music/transition-commercial" && playRandomFile "$rootFolder/music/adverts" && playRandomFile "$rootFolder/music/adverts" && getNext
             ;;
         track)
             currentType="track"
-            playRandomFile "./music/transition-music" && playRandomFile "./music/tracks" && playRandomFile "./music/tracks" && playRandomFile "./music/tracks" && playRandomFile "./music/goodbye" && getNext
+            playRandomFile "$rootFolder/music/transition-music" && playRandomFile "$rootFolder/music/tracks" && playRandomFile "$rootFolder/music/tracks" && playRandomFile "$rootFolder/music/tracks" && playRandomFile "$rootFolder/music/goodbye" && getNext
             ;;
 
         *)
             currentType="goodbye"
-            playRandomFile "./music/goodbye" && getNext "track"
+            playRandomFile "$rootFolder/music/goodbye" && getNext "track"
             ;;
     esac
 }
