@@ -11,30 +11,23 @@ currentType=""
 
 playRandomFile(){
     dir=$1
-    files=($dir)
 
-    # Seed random generator
-    RANDOM=$$$(date +%s)
+    ls "$dir" |sort -R |tail -1 |while read file; do
+        echo "Playing $file"
 
-    rnd=RANDOM
+        if [ "$mode" == "pifm" ] ;
+            then
+                ffmpeg -i "$file" -f s16le -ar "$bitrate" -ac 2 - | sudo ./pifm - "$channel" "$bitrate" stereo
+        fi
 
-    echo "Random int $rnd"
+        if [ -f /Applications/VLC.app/Contents/MacOS/VLC ] ;
+            then
+                /Applications/VLC.app/Contents/MacOS/VLC --no-repeat --no-loop --play-and-exit -I rc "$file"
+            else
+                cvlc -A alsa,none --no-repeat --no-loop --play-and-exit --no-disable-screensaver --alsa-audio-device default "$file"
+        fi
+    done
 
-    file=${files[rnd % ${#files[@]}]}
-    echo "Playing $file"
-
-    if [ "$mode" == "pifm" ] ;
-        then
-            ffmpeg -i "$file" -f s16le -ar "$bitrate" -ac 2 - | sudo ./pifm - "$channel" "$bitrate" stereo
-    fi
-
-    if [ -f /Applications/VLC.app/Contents/MacOS/VLC ] ;
-        then
-            /Applications/VLC.app/Contents/MacOS/VLC --no-repeat --no-loop --play-and-exit -I rc "$file"
-        else
-            cvlc -A alsa,none --no-repeat --no-loop --play-and-exit --no-disable-screensaver --alsa-audio-device default "$file"
-    fi
-    #ffplay -autoexit -i "$file"
 }
 
 getNext(){
