@@ -12,7 +12,7 @@ currentType=""
 playRandomFile(){
     dir=$1
 
-    ls "$dir" |sort -R |tail -1 |while read file; do
+    ls -I '.*' -rt "$dir" |sort -R |tail -1 |while read file; do
         echo "Playing $file"
 
         if [ "$mode" == "pifm" ] ;
@@ -72,24 +72,24 @@ getNext(){
     case "$nextType" in
         psa)
             currentType="psa"
-            playRandomFile "./music/transition-psa/*.mp3" && playRandomFile "./music/psa/*.mp3" && getNext
+            playRandomFile "~/frontier-radio/music/transition-psa/*.mp3" && playRandomFile "~/frontier-radio/music/psa/*.mp3" && getNext
             ;;
         radioplay)
             currentType="radioplay"
-            playRandomFile "./music/goodbye/*.mp3" && playRandomFile "./music/radioplays/*.mp3" && getNext
+            playRandomFile "~/frontier-radio/music/goodbye/*.mp3" && playRandomFile "~/frontier-radio/music/radioplays/*.mp3" && getNext
             ;;
         advert)
             currentType="advert"
-            playRandomFile "./music/transition-commercial/*.mp3" && playRandomFile "./music/adverts/*.mp3" && playRandomFile "./music/adverts/*.mp3" && getNext
+            playRandomFile "~/frontier-radio/music/transition-commercial/*.mp3" && playRandomFile "~/frontier-radio/music/adverts/*.mp3" && playRandomFile "~/frontier-radio/music/adverts/*.mp3" && getNext
             ;;
         track)
             currentType="track"
-            playRandomFile "./music/transition-music/*.mp3" && playRandomFile "./music/tracks/*.mp3" && playRandomFile "./music/tracks/*.mp3" && playRandomFile "./music/tracks/*.mp3" && playRandomFile "./music/goodbye/*.mp3" && getNext
+            playRandomFile "~/frontier-radio/music/transition-music/*.mp3" && playRandomFile "~/frontier-radio/music/tracks/*.mp3" && playRandomFile "~/frontier-radio/music/tracks/*.mp3" && playRandomFile "~/frontier-radio/music/tracks/*.mp3" && playRandomFile "~/frontier-radio/music/goodbye/*.mp3" && getNext
             ;;
 
         *)
             currentType="goodbye"
-            playRandomFile "./music/goodbye/*.mp3" && getNext "track"
+            playRandomFile "~/frontier-radio/music/goodbye/*.mp3" && getNext "track"
             ;;
     esac
 }
