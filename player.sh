@@ -35,19 +35,13 @@ getNext(){
     types=("psa" "radioplay" "advert" "track" "goodbye")
     nextType=""
 
-
     if [ -n "$1" ] ;
         then
             nextType="$1"
         else
-            # Seed random generator
-            RANDOM=$$$(date +%s)
+            rnd=$(python -c "from random import randint; print(randint(1,100))")
 
-            rnd=$(( RANDOM % (100 - 1 + 1 ) + 1 ))
-
-            #echo "Rnd: $rnd"
-
-            #[[ -n $1 ]] && [[ -r $1 ]]
+            #echo "Random number: $rnd"
 
             if [ "$rnd" -gt 0 ] && [ "$rnd" -lt 60 ] ;
                 then
@@ -64,9 +58,6 @@ getNext(){
             else
                 nextType="goodbye"
             fi
-
-
-            #nextType=${types[$RANDOM % ${#types[@]} ]}
     fi
 
     case "$nextType" in
