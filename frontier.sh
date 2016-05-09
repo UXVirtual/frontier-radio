@@ -30,7 +30,7 @@ case "$1" in
     exit 0
     ;;
   *)
-    echo "Usage: /etc/init.d/frontier.sh {start|stop}"
+    echo "Usage: service frontier {start|stop}"
     exit 1
     ;;
 esac
