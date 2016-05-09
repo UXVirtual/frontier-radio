@@ -1,12 +1,5 @@
 #!/usr/bin/env bash
 
-
-
-#set the playback mode. Valid values are "output" for output via the 3.5mm jack or "pifm" for output on GPIO pin 4.
-mode="output"
-channel=107.0 #chanel for pifm output
-bitrate=44100 #default bitrate of tracks
-
 currentType=""
 
 playRandomFile(){
@@ -15,11 +8,6 @@ playRandomFile(){
     file=$(ls -1 "$dir" | python -c "import sys; import random; print(random.choice(sys.stdin.readlines()).rstrip())")
 
     echo "Playing $file"
-
-    if [ "$mode" == "pifm" ] ;
-        then
-            ffmpeg -i "$file" -f s16le -ar "$bitrate" -ac 2 - | sudo ./pifm - "$channel" "$bitrate" stereo
-    fi
 
     if [ -f /Applications/VLC.app/Contents/MacOS/VLC ] ;
         then
