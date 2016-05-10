@@ -1,7 +1,8 @@
 Frontier Radio
 ==============
 
-Pirate radio station powered by PiFM running on Raspberry Pi Zero.
+Pirate radio station powered by VLC running on Raspberry Pi Zero. Just install and connect your Pi up to an FM
+transmitter via the 3.5mm jack and you're away laughing!
 
 ## Installation on Raspberry Pi Raspbian
 
@@ -11,7 +12,8 @@ Pirate radio station powered by PiFM running on Raspberry Pi Zero.
 
 2.  Log into the pi after install and set up your wireless network.
 
-3.  Change the Pi settings to boot to the console only when the Pi is turned on.
+3.  Change the Pi settings to boot to the console only when the Pi is turned on as well as forcing the audio output to
+    the 3.5mm headphone jack.
 
 4.  Change the `pi` user's password in Pi settings.
 
