@@ -15,14 +15,21 @@ Pirate radio station powered by PiFM running on Raspberry Pi Zero.
 
 4.  Change the `pi` user's password in Pi settings.
 
-5.  Clone this repository:
+5.  Install Git:
+
+    ```
+    sudo apt-get update
+    sudo apt-get install git
+    ```
+
+6.  Clone this repository:
 
     ```
     cd /home/pi
     git clone https://github.com/HAZARDU5/frontier-radio.git
     ```
 
-6.  Run the install script `install-pi.sh`. Note that this may take several minutes to complete. You will need an internet 
+7.  Run the install script `install-pi.sh`. Note that this may take several minutes to complete. You will need an internet 
     connection to run the installer:
 
     ```
@@ -77,3 +84,36 @@ You can also add other mp3s to the following folders to change the advertising /
 *   `transition-music` - DJ announcements before a track begins.
 *   `transition-psa` - DJ announcements before a public service announcement begins.
 
+## Setting Up Wifi
+
+The following configuration will allow connecting to WPA/WPA2 WIFI networks automatically when in range.
+
+Edit `/etc/network/interfaces` and change the below line from `wpa-conf` to `wpa-roam`:
+
+```
+wpa-roam /etc/wpa_supplicant/wpa_supplicant.conf
+```
+
+Add the following lines to `/etc/network/interfaces`:
+
+```
+iface network1 inet dhcp
+iface network2 inet dhcp
+```
+
+Edit `/etc/wpa_supplicant/wpa_supplicant.conf`
+
+```
+network={
+    ssid="YOUR_SSID"
+    psk="WIFI_PASSWORD"
+    id_str="network1"
+}
+
+network={
+    ssid="YOUR_SSID2"
+    psk="WIFI_PASSWORD2"
+    id_str="network2"
+}
+
+Run `sudo ifdown wlan0` then `sudo ifup wlan0` to load the new changes.
