@@ -60,38 +60,7 @@ Check the number of the card matches yours by inserting the USB sound card and r
 aplay -l
 ```
 
-## Installation on OSX
-
-1.  Download and install VLC into your `/Applications` folder.
-
-2.  Run the install script `install-osx.sh`.
-
-## Adding Music
-
-Run the following command from your OSX or Linux computer to copy the contents of a folder containing mp3s to the pi:
-
-```
-rsync -v -a DIR pi@REMOTE_IP:/home/pi/frontier-radio/music/tracks
-```
-
-Where `DIR` is the path to the local folder containing mp3s, and `REMOTE_IP` is the IP address of the Pi. You can find
-the IP address of your Pi by running `ifconfig` while logged into the Pi.
-
-You will be asked for the `pi` user's password before `rsync` begins. Note that this won't remove any mp3s already 
-present on the Pi.
-
-You can also add other mp3s to the following folders to change the advertising / DJ announcements between songs:
-
-*   `adverts` - Advertising typically 30 seconds to 1 minute long
-*   `goodbye` - Segments announcing the radio station played when the radio station starts up or before a Radio Play begins
-*   `psa` - Public service announcements
-*   `radioplays` - Radio plays. Typically run between 2-10 minutes.
-*   `tracks` - Music tracks
-*   `transition-commercial` - DJ announcements before an advert begins.
-*   `transition-music` - DJ announcements before a track begins.
-*   `transition-psa` - DJ announcements before a public service announcement begins.
-
-## Setting Up Wifi
+### Setting Up Wifi on Raspberry Pi
 
 The following configuration will allow connecting to WPA/WPA2 WIFI networks automatically when in range.
 
@@ -122,5 +91,35 @@ network={
     psk="WIFI_PASSWORD2"
     id_str="network2"
 }
+```
 
 Run `sudo ifdown wlan0` then `sudo ifup wlan0` to load the new changes.
+
+## Installation on OSX
+
+1.  Download and install VLC into your `/Applications` folder.
+
+## Adding Music
+
+Run the following command from your OSX or Linux computer to copy the contents of a folder containing mp3s to the pi:
+
+```
+rsync -v -a DIR pi@REMOTE_IP:/home/pi/frontier-radio/music/tracks
+```
+
+Where `DIR` is the path to the local folder containing mp3s, and `REMOTE_IP` is the IP address of the Pi. You can find
+the IP address of your Pi by running `ifconfig` while logged into the Pi.
+
+You will be asked for the `pi` user's password before `rsync` begins. Note that this won't remove any mp3s already 
+present on the Pi.
+
+You can also add other mp3s to the following folders to change the advertising / DJ announcements between songs:
+
+*   `adverts` - Advertising typically 30 seconds to 1 minute long
+*   `goodbye` - Segments announcing the radio station played when the radio station starts up or before a Radio Play begins
+*   `psa` - Public service announcements
+*   `radioplays` - Radio plays. Typically run between 2-10 minutes.
+*   `tracks` - Music tracks
+*   `transition-commercial` - DJ announcements before an advert begins.
+*   `transition-music` - DJ announcements before a track begins.
+*   `transition-psa` - DJ announcements before a public service announcement begins.
