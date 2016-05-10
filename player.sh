@@ -20,9 +20,9 @@ playRandomFile(){
 
     if [ -f /Applications/VLC.app/Contents/MacOS/VLC ] ;
         then
-            /Applications/VLC.app/Contents/MacOS/VLC --no-repeat --no-loop --play-and-exit -I rc "$dir/$file"
+            /Applications/VLC.app/Contents/MacOS/VLC --no-repeat --no-loop --play-and-exit --audio-filter normvol --norm-max-level 3.000000 -I rc "$dir/$file"
         else
-            cvlc -A alsa,none --no-repeat --no-loop --play-and-exit --no-disable-screensaver --alsa-audio-device default "$dir/$file"
+            cvlc -A alsa,none --no-repeat --no-loop --play-and-exit --audio-filter normvol --norm-max-level 3.000000 --no-disable-screensaver --alsa-audio-device default "$dir/$file"
     fi
 
 }
