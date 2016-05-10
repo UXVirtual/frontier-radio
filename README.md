@@ -64,7 +64,7 @@ aplay -l
 Run the following command from your OSX or Linux computer to copy the contents of a folder containing mp3s to the pi:
 
 ```
-rsync -a DIR pi@REMOTE_IP:/home/pi/frontier-radio/music/tracks
+rsync -v -a DIR pi@REMOTE_IP:/home/pi/frontier-radio/music/tracks
 ```
 
 Where `DIR` is the path to the local folder containing mp3s, and `REMOTE_IP` is the IP address of the Pi. You can find
