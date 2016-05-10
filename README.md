@@ -97,7 +97,9 @@ Run `sudo ifdown wlan0` then `sudo ifup wlan0` to load the new changes.
 
 ## Installation on OSX
 
-1.  Download and install VLC into your `/Applications` folder.
+1.  Download and install [VLC](http://www.videolan.org/vlc/download-macosx.html) into your `/Applications` folder.
+
+2.  Download and install [Python 3.5.1](https://www.python.org/downloads/mac-osx/) or higher.
 
 ## Adding Music
 
