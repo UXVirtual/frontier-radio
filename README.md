@@ -39,6 +39,11 @@ transmitter via the 3.5mm jack and you're away laughing!
     ./install-pi.sh
     ```
 
+### Controlling volume on Raspberry Pi
+
+You can adjust the volume of playback by opening `sudo alsamixer` and adjusting the levels in there for each device to 
+set them permanently.
+
 ### Forcing Output to a USB Sound Card on Raspberry Pi
 
 If you're using Raspbian Jessie which is based on Debian 8 you can edit the `/etc/asound.conf` file to set the 
