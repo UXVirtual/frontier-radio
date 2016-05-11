@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 currentType=""
+lastType=""
 
 if [ -f "/home/pi/frontier-radio" ] ;
     then
@@ -38,8 +39,6 @@ getNext(){
         else
             rnd=$(python -c "from random import randint; print(randint(1,100))")
 
-            #echo "Random number: $rnd"
-
             if [ "$rnd" -gt 0 ] && [ "$rnd" -lt 60 ] ;
                 then
                     nextType="track"
@@ -59,22 +58,53 @@ getNext(){
 
     case "$nextType" in
         psa)
-            currentType="psa"
-            playRandomFile "$rootFolder/music/transition-psa" && playRandomFile "$rootFolder/music/psa" && getNext
+            if [ !"$lastType" == "psa" ] ;
+                then
+                    lastType="$currentType"
+                    currentType="psa"
+                    playRandomFile "$rootFolder/music/psa" && getNext
+                else
+                    lastType="$currentType"
+                    currentType="psa"
+                    playRandomFile "$rootFolder/music/transition-psa" && playRandomFile "$rootFolder/music/psa" && getNext
+            fi
             ;;
         radioplay)
-            currentType="radioplay"
-            playRandomFile "$rootFolder/music/goodbye" && playRandomFile "$rootFolder/music/radioplays" && getNext
+            if [ !"$lastType" == "radioplay" ] ;
+                then
+                    lastType="$currentType"
+                    currentType="radioplay"
+                    playRandomFile "$rootFolder/music/radioplays" && getNext
+                else
+                    lastType="$currentType"
+                    currentType="radioplay"
+                    playRandomFile "$rootFolder/music/goodbye" && playRandomFile "$rootFolder/music/radioplays" && getNext
+            fi
             ;;
         advert)
-            currentType="advert"
-            playRandomFile "$rootFolder/music/transition-commercial" && playRandomFile "$rootFolder/music/adverts" && playRandomFile "$rootFolder/music/adverts" && getNext
+            if [ !"$lastType" == "advert" ] ;
+                then
+                    lastType="$currentType"
+                    currentType="advert"
+                    playRandomFile "$rootFolder/music/adverts" && playRandomFile "$rootFolder/music/adverts" && getNext
+                else
+                    lastType="$currentType"
+                    currentType="advert"
+                    playRandomFile "$rootFolder/music/transition-commercial" && playRandomFile "$rootFolder/music/adverts" && playRandomFile "$rootFolder/music/adverts" && getNext
+            fi
             ;;
         track)
-            currentType="track"
-            playRandomFile "$rootFolder/music/transition-music" && playRandomFile "$rootFolder/music/tracks" && playRandomFile "$rootFolder/music/tracks" && playRandomFile "$rootFolder/music/tracks" && playRandomFile "$rootFolder/music/goodbye" && getNext
+            if [ !"$lastType" == "track" ] ;
+                then
+                    lastType="$currentType"
+                    currentType="track"
+                    playRandomFile "$rootFolder/music/tracks" && playRandomFile "$rootFolder/music/tracks" && playRandomFile "$rootFolder/music/tracks" && playRandomFile "$rootFolder/music/goodbye" && getNext
+                else
+                    lastType="$currentType"
+                    currentType="track"
+                    playRandomFile "$rootFolder/music/transition-music" && playRandomFile "$rootFolder/music/tracks" && playRandomFile "$rootFolder/music/tracks" && playRandomFile "$rootFolder/music/tracks" && playRandomFile "$rootFolder/music/goodbye" && getNext
+            fi
             ;;
-
         *)
             currentType="goodbye"
             playRandomFile "$rootFolder/music/goodbye" && getNext "track"
