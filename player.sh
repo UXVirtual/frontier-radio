@@ -70,7 +70,7 @@ getNext(){
             fi
             ;;
         radioplay)
-            if [ !"$lastType" == "radioplay" ] ;
+            if [ !"$lastType" == "radioplay" ] && [ !"$lastType" == "track" ] ;
                 then
                     lastType="$currentType"
                     currentType="radioplay"
